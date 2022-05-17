@@ -1,1 +1,46 @@
 
+CREATE TABLE `item` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(255) NOT NULL,
+  `category_id` int(11) NOT NULL
+);
+
+INSERT INTO `item` (`id`, `name`, `category_id`) VALUES
+(null, 'iphone 13 pro max', 4),
+(null, 'phone 13 pro', 4),
+(null, 'phone 12', 4),
+(null, 'phone 11 pro', 4),
+(null, 'phone 11', 4),
+(null, 'phone 12 pro', 4),
+(null, 'samsung A53', 5),
+(null, 'samsung S 22', 5),
+(null, 'samsung S 21', 5),
+(null, 'samsung S20', 5),
+(null, 'mavBook PRO 2020', 6);
+
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(255) NOT NULL,
+  `parent_id` int(11) NOT NULL
+);
+
+
+INSERT INTO `category` (`id`, `name`, `parent_id`) VALUES
+(null, 'elect', 0),
+(null, 'Mobiles', 1),
+(null, 'laptops', 1),
+(null, 'iphone', 2),
+(null, 'samsung_mob', 2),
+(null, 'mac', 3),
+(null, 'samsung_lap', 3);
+
+
+WITH RECURSIVE sub_category_item AS (
+SELECT name, id, 'category' as 'type' FROM `category` WHERE id=4
+UNION
+SELECT category.name, category.id, 'category' as 'type' FROM `category`,`sub_category_item` WHERE category.parent_id= 4
+UNION
+SELECT item.name, item.id,'item' as 'type' FROM `item`,`sub_category_item` WHERE category_id = sub_category_item.id
+)
+
+select * from sub_category_item;
