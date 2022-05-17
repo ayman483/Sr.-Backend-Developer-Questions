@@ -1,1 +1,14 @@
+class Product(db.Model):
+   __tablename__ = "Products"
+   id = db.Column(db.Integer, primary_key=True)
+   name = db.Column(db.String(20))
+   price = db.Column(db.Float)
+   currency = db.Column(db.String(20))
+
+ def __init__(self, name, price, currency):
+    self.name = name
+    self.price = price
+    self.currency = currency
+    
+db.create_all()
 
