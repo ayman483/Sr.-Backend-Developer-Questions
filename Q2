@@ -1,0 +1,3 @@
+We need to add a new column to the products table, and the default value is the old currency. We need a new currency table to save the currencies and the amount of change between currencies. Then we add the currency to the controller and services and check the currency in the payment process. This is quickly how the change will be.
+
+- We need to verify that the modifications to API do not affect the old users and I recommend creating a new version of the API,  
