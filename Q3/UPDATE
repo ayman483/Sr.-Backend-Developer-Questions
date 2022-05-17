@@ -1,0 +1,6 @@
+def update_product(id):
+  body = request.get_json()
+  db.session.query(Product).filter_by(id=id).update(
+    dict(name=body['name'], price=body['price'],currency=body['currency']))
+  db.session.commit()
+  return "Product updated"
