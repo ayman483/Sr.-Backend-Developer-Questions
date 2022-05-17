@@ -1,0 +1,5 @@
+# @app.route('/product/<id>', methods=['GET'])
+def get_item(id):
+  product = product.query.get(id)
+  del product.__dict__['_sa_instance_state']
+  return jsonify(product.__dict__)
