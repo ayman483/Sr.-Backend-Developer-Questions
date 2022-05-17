@@ -1,3 +1,4 @@
+# @app.route('/product/<id>', methods=['PUT'])
 def update_product(id):
   body = request.get_json()
   db.session.query(Product).filter_by(id=id).update(
