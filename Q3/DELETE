@@ -1,0 +1,5 @@
+# @app.route('/Product/<id>', methods=['DELETE'])
+def delete_Product(id):
+  db.session.query(Product).filter_by(id=id).delete()
+  db.session.commit()
+  return "Product deleted"
